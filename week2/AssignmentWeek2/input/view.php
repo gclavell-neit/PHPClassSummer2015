@@ -6,9 +6,10 @@
     </head>
     <body>
         <?php
+        //allows the current file to access functions in the following separate files
         include './dbCon.php';
         include './functions.php';
-
+        //sets up the database connection
         $db = getDatabase();
 
         $stmt = $db->prepare("SELECT * FROM actors");
@@ -21,6 +22,7 @@
 
         <table>
             <thead>
+                <!-- Sets number of table columns and names them  -->
                 <tr>
                     <th>ID</th>
                     <th>First Name</th>
@@ -30,6 +32,7 @@
                 </tr>
             </thead>
             <?php foreach ($results as $row): ?>
+            <!-- fills table cells with database data row by row -->
                 <tr>
                     <td><?php echo $row['id']; ?></td>
                     <td><?php echo $row['firstName']; ?></td>
