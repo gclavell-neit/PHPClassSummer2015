@@ -73,7 +73,9 @@
                     <td><a href="Delete.php?id=<?php echo $row['id']; ?>">Delete</a></td>            
                 </tr>
             <?php endforeach; ?>
+                
         </table>
+        <p> <a href="Create.php">Create</a></p>
 
     </body>
 </html>

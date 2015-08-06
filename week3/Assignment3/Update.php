@@ -16,17 +16,17 @@
             if (isPostRequest()) {
                 $id = filter_input(INPUT_POST, 'id');
                 $corp = filter_input(INPUT_POST, 'corp');
-                $incorp_dt = filter_input(INPUT_POST, 'incorp_dt');
+                
                 $email = filter_input(INPUT_POST, 'email');
                 $zipcode = filter_input(INPUT_POST, 'zipcode');
                 $owner = filter_input(INPUT_POST, 'owner');
                 $phone = filter_input(INPUT_POST, 'phone');
-                $stmt = $db->prepare("UPDATE corps set corp = :corp, incorp_dt = :incorp_dt, email = :email, zipcode = :zipcode, owner = :owner, phone = :phone where id = :id");
+                $stmt = $db->prepare("UPDATE corps set corp = :corp, email = :email, zipcode = :zipcode, owner = :owner, phone = :phone where id = :id");
                 
                 $binds = array(
                     ":id" => $id,
                     ":corp" => $corp,
-                    ":incorp_dt" => $incorp_dt,
+                    
                     ":email" => $email,
                     ":zipcode" => $zipcode,
                     ":owner" => $owner,
@@ -63,8 +63,7 @@
         <form method="post" action="#">            
             Corp <input type="text" value="<?php echo $corp; ?>" name="corp" />
             <br />
-            Incorp. Date <input type="text" value="<?php echo $incorp_dt; ?>" name="incorp_dt" />
-            <br />  
+            
             Email <input type="text" value="<?php echo $email; ?>" name="email" />
             <br />
             Zipcode <input type="text" value="<?php echo $zipcode; ?>" name="zipcode" />
