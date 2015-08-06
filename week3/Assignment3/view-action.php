@@ -24,7 +24,7 @@
          * create a variable to hold the database
          * SQL statement
          */
-        $stmt = $db->prepare("SELECT * FROM test");
+        $stmt = $db->prepare("SELECT * FROM corps");
 
         /*
          * We execute the statement and make sure we
@@ -39,11 +39,13 @@
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Data One</th>
-                    <th>Data Two</th>
+                    
+                    <th>Corp</th>
+                    
                     <th></th>
                     <th></th>
+                    <th></th>
+                    
                 </tr>
             </thead>
             <?php
@@ -63,9 +65,10 @@
             
             <?php foreach ($results as $row): ?>
                 <tr>
-                    <td><?php echo $row['id']; ?></td>
-                    <td><?php echo $row['dataone']; ?></td>
-                    <td><?php echo $row['datatwo']; ?></td>            
+                    
+                    <td><?php echo $row['corp']; ?></td>
+                    
+                    <td><a href="Read.php?id=<?php echo $row['id']; ?>">Read</a></td>
                     <td><a href="Update.php?id=<?php echo $row['id']; ?>">Update</a></td>            
                     <td><a href="Delete.php?id=<?php echo $row['id']; ?>">Delete</a></td>            
                 </tr>

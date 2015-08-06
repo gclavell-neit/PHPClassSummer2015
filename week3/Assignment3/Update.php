@@ -15,14 +15,22 @@
             $result = '';
             if (isPostRequest()) {
                 $id = filter_input(INPUT_POST, 'id');
-                $dataone = filter_input(INPUT_POST, 'dataone');
-                $datatwo = filter_input(INPUT_POST, 'datatwo');
-                $stmt = $db->prepare("UPDATE test set dataone = :dataone, datatwo = :datatwo where id = :id");
+                $corp = filter_input(INPUT_POST, 'corp');
+                $incorp_dt = filter_input(INPUT_POST, 'incorp_dt');
+                $email = filter_input(INPUT_POST, 'email');
+                $zipcode = filter_input(INPUT_POST, 'zipcode');
+                $owner = filter_input(INPUT_POST, 'owner');
+                $phone = filter_input(INPUT_POST, 'phone');
+                $stmt = $db->prepare("UPDATE corps set corp = :corp, incorp_dt = :incorp_dt, email = :email, zipcode = :zipcode, owner = :owner, phone = :phone, where id = :id");
                 
                 $binds = array(
                     ":id" => $id,
-                    ":dataone" => $dataone,
-                    ":datatwo" => $datatwo
+                    ":corp" => $corp,
+                    ":incorp_dt" => $incorp_dt,
+                    ":email" => $email,
+                    ":zipcode" => $zipcode,
+                    ":owner" => $owner,
+                    ":phone" => $phone
                 );
                 
                 if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
@@ -30,7 +38,7 @@
                 }
             } else {
                 $id = filter_input(INPUT_GET, 'id');
-                $stmt = $db->prepare("SELECT * FROM test where id = :id");
+                $stmt = $db->prepare("SELECT * FROM corps where id = :id");
                 $binds = array(
                     ":id" => $id
                 );
@@ -40,8 +48,12 @@
                 if ( !isset($id) ) {
                     die('Record not found');
                 }
-                $dataone = $results['dataone'];
-                $datatwo = $results['datatwo'];
+                $corp = $results['corp'];
+                $incorp_dt = $results['incorp_dt'];
+                $email = $results['email'];
+                $zipcode = $results['zipcode'];
+                $owner = $results['owner'];
+                $phone = $results['phone'];
             }
         
         ?>
@@ -49,9 +61,17 @@
         <h1><?php echo $result; ?></h1>
         
         <form method="post" action="#">            
-            Data one <input type="text" value="<?php echo $dataone; ?>" name="dataone" />
+            Corp <input type="text" value="<?php echo $corp; ?>" name="corp" />
             <br />
-            Data two <input type="text" value="<?php echo $datatwo; ?>" name="datatwo" />
+            Incorp. Date <input type="text" value="<?php echo $incorp_dt; ?>" name="incorp_dt" />
+            <br />  
+            Email <input type="text" value="<?php echo $email; ?>" name="email" />
+            <br />
+            Zipcode <input type="text" value="<?php echo $zipcode; ?>" name="zipcode" />
+            <br />  
+             Owner <input type="text" value="<?php echo $owner; ?>" name="owner" />
+            <br />
+            Phone <input type="text" value="<?php echo $phone; ?>" name="phone" />
             <br />  
             <input type="hidden" value="<?php echo $id; ?>" name="id" /> 
             <input type="submit" value="Update" />

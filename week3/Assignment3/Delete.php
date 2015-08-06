@@ -18,7 +18,7 @@
             
             $id = filter_input(INPUT_GET, 'id'); 
             
-            $stmt = $db->prepare("DELETE FROM test where id = :id");
+            $stmt = $db->prepare("DELETE FROM corps where id = :id");
             
             $binds = array(
                 ":id" => $id
