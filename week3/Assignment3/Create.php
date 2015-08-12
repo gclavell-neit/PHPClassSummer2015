@@ -24,9 +24,8 @@
                 $stmt = $db->prepare("INSERT INTO corps SET corp = :corp, incorp_dt = CURDATE(), email = :email, zipcode = :zipcode, owner = :owner, phone = :phone");
                 
                 $binds = array(
-                    ":id" => $id,
+                    
                     ":corp" => $corp, 
-                    ":incorp_dt" => $incorp_dt,
                     ":email" => $email,
                     ":zipcode" => $zipcode,
                     ":owner" => $owner,
