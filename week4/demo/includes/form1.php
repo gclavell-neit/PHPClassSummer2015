@@ -1,14 +1,17 @@
-<form action='#' method='POST'>
+<form action="#" method="post">
     <fieldset>
-    <legend> Yes or No? </legend>
-    <input type="radio" id = "radio1" name="yesorno" value='Yes'/> <label>Yes</label> <br>
-    <input type="radio" id = "radio2" name="yesorno" value='No'/> <label>No</label> <br><br>
-    
-    <select id="dropdown" name = "List">
-        <option value = "agree">Agree</option>
-        <option value = "disagree">Disagree</option>
-    </select><br><br>
-    <input type="submit" name="submit" value="submityesorno"/>
-    </fieldset>
-    
+        <legend>Form 1</legend>
+        
+        <label>Data one</label>  
+        <input type="radio" name="dataone" value="ford" />
+        <input type="radio" name="dataone" value="honda" />
+
+        <label>Data 2</label>  
+        <select name="datatwo">
+            <option value="eggs">Eggs</option>
+            <option value="bread">Bread</option>
+        </select>
+        <input type="hidden" name="action" value="Submit1" />
+        <input type="submit" value="Submit1" />
+    </fieldset>    
 </form>
