@@ -15,7 +15,7 @@
      
         if ( $action === 'search' ) {
             $results = searchCorps($column, $search);
-            echo print_r($results);
+            
         }
         if ( $action === 'sort' ) {
             $results = sortCorps($column, $order);

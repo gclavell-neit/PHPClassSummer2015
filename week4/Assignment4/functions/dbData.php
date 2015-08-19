@@ -41,9 +41,12 @@ function getAllCorpsData(){
 function searchCorps($column, $search){
     $db = getDatabase();
            
-    $stmt = $db->prepare("SELECT * FROM corps WHERE $column LIKE $search");
+    $stmt = $db->prepare("SELECT * FROM corps WHERE $column LIKE :search");
 
-  
+    $search = '%'.$search.'%';
+    $binds = array(
+        ":search" => $search
+    );
     $results = array();
     if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -58,7 +61,7 @@ function sortCorps($column, $order){
     $stmt = $db->prepare("SELECT * FROM corps ORDER BY $column $order");
    
     $results = array();
-    if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+    if ($stmt->execute() && $stmt->rowCount() > 0) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     return $results;
