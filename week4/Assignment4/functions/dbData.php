@@ -22,7 +22,7 @@ function getDatabase() {
 }
 
 
-
+/*Not used in this Assignment, but returns all data in the corps table*/
 function getAllCorpsData(){
     $db = getDatabase();
            
@@ -35,12 +35,10 @@ function getAllCorpsData(){
     return $results;
 }
 
-/*
- * $stmt = $db->prepare("SELECT * FROM test ORDER BY $column $order");
- */
+
 function searchCorps($column, $search){
     $db = getDatabase();
-           
+    /* passes values of $column and search into a prepared SELECT statement modified by a WHERE clause */           
     $stmt = $db->prepare("SELECT * FROM corps WHERE $column LIKE :search");
 
     $search = '%'.$search.'%';
@@ -48,6 +46,8 @@ function searchCorps($column, $search){
         ":search" => $search
     );
     $results = array();
+     /* if there is data to be retreived from the database, and the statement was set up correctly,
+     * sets $results equal to the data */ 
     if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -57,10 +57,12 @@ function searchCorps($column, $search){
 function sortCorps($column, $order){
     
     $db = getDatabase();
-           
+    /* passes values of $column and $order into a prepared SELECT statement modified by an ORDER BY clause*/       
     $stmt = $db->prepare("SELECT * FROM corps ORDER BY $column $order");
    
     $results = array();
+    /* if there is data to be retreived from the database, and the statement was set up correctly,
+     * sets $results equal to the data */ 
     if ($stmt->execute() && $stmt->rowCount() > 0) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

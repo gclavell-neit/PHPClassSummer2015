@@ -21,10 +21,12 @@
             $results = sortCorps($column, $order);
         }
          ?>
-        <?php include './forms/searchform.php'; ?>
+       
+        <?php 
+        /*allows access to both forms*/ 
+        include './forms/searchform.php'; ?>
         <h3>OR</h3>
-        <?php include './forms/sortform.php'; 
-        ?>
+        <?php include './forms/sortform.php'; ?>
         <br>
         <table>
             <thead>
@@ -50,10 +52,6 @@
              * 
              * So we loop through each result to get back
              * an array with values
-             * 
-             * feel free to 
-             * <?php echo print_r($results); ?>
-             * to see how the array is structured
              */            
             ?>
             
