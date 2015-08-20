@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     </head>
     <body>
         <?php
@@ -12,7 +14,8 @@
         $column = filter_input(INPUT_GET, 'column');
         $order = filter_input(INPUT_GET, 'order');
         $search = filter_input(INPUT_GET, 'search');
-     
+        $results = getAllCorpsData();
+        
         if ( $action === 'search' ) {
             $results = searchCorps($column, $search);
             
@@ -28,7 +31,7 @@
         <h3>OR</h3>
         <?php include './forms/sortform.php'; ?>
         <br>
-        <table>
+        <table border="2" class="table table-striped">
             <thead>
                 <tr>
                     
