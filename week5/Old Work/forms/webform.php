@@ -1,6 +1,6 @@
 <form action="#" method="GET">
     <fieldset>
-        <legend>Site Lookup</legend></br>
+        <legend>Add to Database</legend></br>
         <label>Enter Site Name: </label>  
         <input name="name" type="search"/>
          </br></br><label>Enter Site URL: </label> 
