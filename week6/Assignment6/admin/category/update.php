@@ -11,6 +11,9 @@ and open the template in the editor.
     </head>
     <body>
         <?php
+        require_once '../../includes/session-start.req-inc.php';
+        require_once '../../includes/access-required.html.php';
+        
         include_once '../../functions/dbconnect.php';
         include_once '../../functions/category-functions.php';
         include_once '../../functions/until.php';

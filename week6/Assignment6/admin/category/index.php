@@ -11,12 +11,14 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        
+        require_once '../../includes/session-start.req-inc.php';
+        require_once '../../includes/access-required.html.php';
        
         ?>
-        <h1>Admin Portal</h1>
+        <h1>Categories</h1>
         <p> <a href="create.php">Add New Category</a></p>
         <p> <a href="delete.php">Delete Category</a></p>
-        <p> <a href="update.php">Update Category</a></p>
+        <p> <a href="update.php">Update Category</a></p><br><br>
+         <p> <a href="../index.php">Return to Admin Portal</a></p>
     </body>
 </html>

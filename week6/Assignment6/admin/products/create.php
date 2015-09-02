@@ -8,6 +8,9 @@
         <?php
         // put your code here
         
+        require_once '../../includes/session-start.req-inc.php';
+        require_once '../../includes/access-required.html.php';
+        
         include_once '../../functions/dbconnect.php';
         include_once '../../functions/category-functions.php';
         include_once '../../functions/products-functions.php';
