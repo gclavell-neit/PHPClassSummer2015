@@ -21,6 +21,18 @@ function getAllProducts() {
     
 }
 
+function getAllProductsAndCategories() {
+    $db = dbconnect();
+    $stmt = $db->prepare("SELECT * FROM products JOIN categories ON categories.category_id = products.category_id");
+    $results = array();
+    if ($stmt->execute() && $stmt->rowCount() > 0) {
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+     
+    return $results;
+    
+}
+
 function createProduct($category_id, $product, $price, $image ) {
     
     $db = dbconnect();
@@ -89,3 +101,18 @@ function isValidPrice($value) {
     return true;
 }
 
+function getProduct($id) {
+    $db = dbconnect();
+    $stmt = $db->prepare("SELECT * FROM products JOIN categories WHERE categories.category_id = products.category_id AND product_id = :product_id");
+     $binds = array(
+        ":product_id" => $id
+    );
+    
+    $results = array();
+    if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+     
+    return $results;
+    
+}

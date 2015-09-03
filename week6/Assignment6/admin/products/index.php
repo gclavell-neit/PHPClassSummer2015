@@ -17,7 +17,9 @@ and open the template in the editor.
         <h1>Products</h1>
         <p> <a href="create.php">Add New Product</a></p>
         <p> <a href="delete.php">Delete Product</a></p>
-        <p> <a href="update.php">Update Product</a></p><br><br>
+        <p> <a href="update.php">Update Product</a></p>
+        <p> <a href="read.php">View All Products</a></p>
+        <br><br>
          <p> <a href="../index.php">Return to Admin Portal</a></p>
     </body>
 </html>

@@ -18,6 +18,38 @@ and open the template in the editor.
         include_once '../../functions/category-functions.php';
         include_once '../../functions/products-functions.php';
         include_once '../../functions/until.php';
+   
+        $products = getAllProductsAndCategories();
         ?>
+        
+        <h3>Product List</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    
+                   
+                </tr>
+            </thead>
+          
+            
+            <?php foreach ($products as $row): ?>
+                <tr>
+                    
+                    <td><?php echo $row['product_id']; ?></td>
+                    <td><?php echo $row['product']; ?></td>
+                    <td><?php echo $row['price']; ?></td>
+                    <td><?php echo $row['category']; ?></td>
+                    
+                    
+                              
+                </tr>
+            <?php endforeach; ?>
+            
+        </table>
+        <p> <a href="index.php">Admin Portal</a></p>
     </body>
 </html>
