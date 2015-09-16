@@ -25,7 +25,7 @@ and open the template in the editor.
                 
                 if ( isValidUser($email, $password) ) {
                     $_SESSION['isValidUser'] = true;
-                    $_SESSION['userid'] = getUserID($email);
+                    $_SESSION['userId'] = getUserID($email);
                     
                     
                 } else {

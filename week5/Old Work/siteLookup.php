@@ -37,9 +37,7 @@ and open the template in the editor.
                     } else {
                         $error = 'No Results found';
                     }
-                    
-                    
-                    
+                  
                 }
             
         ?>
