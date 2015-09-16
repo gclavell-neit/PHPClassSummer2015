@@ -27,6 +27,7 @@ and open the template in the editor.
                     $_SESSION['isValidUser'] = true;
                     $_SESSION['userid'] = getUserID($email);
                     
+                    
                 } else {
                     $results = 'Sorry please try again';
                     include 'includes/results.html.php';
@@ -34,11 +35,8 @@ and open the template in the editor.
                
             }
             if ( isset($_SESSION['isValidUser']) &&  $_SESSION['isValidUser'] === true ) {
-               //foreach($_SESSION['userid'] as $userid ){
-                   //echo $userid;
-               //}
-                //echo $_SESSION['userid'];
-                //header('Location: addressBook/index.php');
+                               
+                header('Location: addressBook/index.php');
                 
             }
             else{

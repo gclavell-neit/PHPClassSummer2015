@@ -26,14 +26,18 @@ function isValidUser( $email, $pass ) {
 }
 
 function getUserID($email){
+	
     $db = dbconnect();
-    $stmt = $db->prepare("SELECT user_id FROM users WHERE email = :email");
+    $stmt = $db->prepare("SELECT * FROM users WHERE email = :email");
     $binds = array(
         ":email" => $email
     );
     if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
-        $user_id = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user_id = $result['user_id'];
+        
     }
+
     return $user_id;
     
 }
