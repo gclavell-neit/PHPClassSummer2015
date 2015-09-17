@@ -46,9 +46,9 @@ and open the template in the editor.
                     <td><?php echo $row['birthday']; ?></td> 
                     
                     <?php $row = $results; ?>
-                    <td><a href="View.php?id=<?php echo $row['address_id']; ?>">View</a></td>      
-                    <td><a href="Update.php?id=<?php echo $row['address_id']; ?>">Update</a></td>            
-                    <td><a href="Delete.php?id=<?php echo $row['address_id']; ?>">Delete</a></td>  
+                    <td><a href="View.php?address_id=<?php echo $row['address_id']; ?>">View</a></td>      
+                    <td><a href="Update.php?address_id=<?php echo $row['address_id']; ?>">Update</a></td>            
+                    <td><a href="Delete.php?address_id=<?php echo $row['address_id']; ?>">Delete</a></td>  
                     <?php endforeach; ?>
                 </tr>
             
