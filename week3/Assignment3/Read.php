@@ -18,7 +18,7 @@
             
                    $results = '';
                    
-                   $id = filter_input(INPUT_GET, 'id');
+                $id = filter_input(INPUT_GET, 'id');
                 $stmt = $db->prepare("SELECT * FROM corps where id = :id");
                 $binds = array(
                     ":id" => $id

@@ -39,6 +39,7 @@ and open the template in the editor.
         }
        
         include 'includes/newAddressForm.php';
+        echo '<p><a href="read.php">Read Page</a></p>';
         echo '<p><a href="../logout/index.php">Log Out</a></p>';
         ?>
        

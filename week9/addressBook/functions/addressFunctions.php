@@ -32,3 +32,14 @@ function getGroups(){
    
     return $groups;
 }
+
+function getAddresses(){
+    $db = dbconnect();    
+    $stmt = $db->prepare("SELECT * FROM address");
+    if ($stmt->execute() && $stmt->rowCount() > 0) {
+        $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+    }
+   
+    return $addresses;
+}
