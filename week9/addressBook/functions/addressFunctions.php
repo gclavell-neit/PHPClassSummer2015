@@ -33,13 +33,41 @@ function getGroups(){
     return $groups;
 }
 
-function getAddresses(){
-    $db = dbconnect();    
+function getAddresses($user_id){
+    $db = dbconnect(); 
+    $addresses = null;
     $stmt = $db->prepare("SELECT * FROM address");
-    if ($stmt->execute() && $stmt->rowCount() > 0) {
+    
+    $stmt = $db->prepare("SELECT * FROM address WHERE user_id = :user_id");
+    
+    $binds = array(
+    			
+    		":user_id" => $user_id
+    );
+    
+    if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
         $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
     }
    
     return $addresses;
+}
+
+function getAddressById($address_id){
+	$db = dbconnect();
+	$address = array();
+	$stmt = $db->prepare("SELECT * FROM address WHERE address_id = :address_id");
+	
+	$binds = array(
+			
+			":address_id" => $address_id
+	);
+	
+	if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+		$address = $stmt->fetch(PDO::FETCH_ASSOC);
+	
+	}
+	 
+	return $address;
+
 }

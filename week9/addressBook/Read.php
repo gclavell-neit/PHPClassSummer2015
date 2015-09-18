@@ -15,11 +15,12 @@ and open the template in the editor.
         include '../functions/dbconnect.php';
         include_once '../functions/until.php';
         include 'functions/addressFunctions.php';
-        $user_id = $_SESSION['userId']; //must pass user id in getAddresses and adjust select statement to show only entries for that user
-        $results = getAddresses();
+        $user_id = $_SESSION['userId']; 
+        $results = getAddresses($user_id);
         
 
         ?>
+       <?php if(!is_null($results)): ?>
         <table>
             <thead>
                 <tr>
@@ -45,7 +46,7 @@ and open the template in the editor.
                     <td><?php echo $row['website']; ?></td>
                     <td><?php echo $row['birthday']; ?></td> 
                     
-                    <?php $row = $results; ?>
+                    
                     <td><a href="View.php?address_id=<?php echo $row['address_id']; ?>">View</a></td>      
                     <td><a href="Update.php?address_id=<?php echo $row['address_id']; ?>">Update</a></td>            
                     <td><a href="Delete.php?address_id=<?php echo $row['address_id']; ?>">Delete</a></td>  
@@ -53,5 +54,15 @@ and open the template in the editor.
                 </tr>
             
         </table>
+        <?php endif; ?>
+        <?php if(is_null($results)): ?>
+        <h3>Your address book is empty!</h3>
+        
+        <a href="index.php">Return to Address Listing</a><br>
+        <?php endif; ?>
+        
+        
+        
+        <a href="../logout/index.php">Log Out</a>
     </body>
 </html>
