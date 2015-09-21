@@ -10,38 +10,79 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <h3>Address Book</h3>
+    <h3>Address Book</h3>
         <?php
-        // address book main page
         require_once '../includes/session-start.req-inc.php';
         include '../functions/dbconnect.php';
         include_once '../functions/until.php';
         include 'functions/addressFunctions.php';
+        $action = filter_input(INPUT_GET, 'action');
+        $column = filter_input(INPUT_GET, 'column');
+        $orderby = filter_input(INPUT_GET, 'orderby');
+        $search = filter_input(INPUT_GET, 'search');
         $user_id = $_SESSION['userId'];
         
-        $groups = getGroups();
-        if (isPostRequest()) {
-                
-                $address_group_id = filter_input(INPUT_POST, 'address_group_id');
-                $fullname = filter_input(INPUT_POST, 'fullname');
-                $email = filter_input(INPUT_POST, 'email');
-                $address = filter_input(INPUT_POST, 'address');
-                $phone = filter_input(INPUT_POST, 'phone');
-                $website = filter_input(INPUT_POST, 'website');
-                $birthday = filter_input(INPUT_POST, 'birthday');
-                 if(newAddress($user_id, $address_group_id, $fullname, $email, $address, $phone, $website, $birthday)){
-                 echo '<h3>Added successfully</h3>';
-                 }else{
-                     
-                   echo '<h3>You didnt do it right dummy</h3>';
-                 }
-          
+        $results = getAddresses($user_id);
+		
+        if ( $action === 'search' ) {
+        	$results = searchAddresses($user_id, $column, $search);
+        
         }
-       
-        include 'includes/newAddressForm.php';
-        echo '<p><a href="read.php">Read Page</a></p>';
-        echo '<p><a href="../logout/index.php">Log Out</a></p>';
+        if ( $action === 'sort' ) {
+        	$results = sortAddresses($user_id, $orderby);
+        	
+        }
+
         ?>
+        
+        <?php 
+        /*allows access to both forms*/ 
+        include 'includes/searchform.php'; ?>
+        <?php include 'includes/sortform.php'; ?>
+        <br>
+        
+       <?php if(!is_null($results)): ?>
+      
        
+        <table>
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                   
+                    
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    
+                </tr>
+            </thead>
+                <?php foreach ($results as $row): ?>
+                <tr>
+                    <td><?php echo $row['fullname']; ?></td>
+                    <td><?php echo $row['email']; ?></td>
+                    <td><?php echo $row['address']; ?></td>
+                    <td><?php echo $row['phone']; ?></td>
+                   
+                    
+                    
+                    <td><a href="View.php?address_id=<?php echo $row['address_id']; ?>">View</a></td>      
+                    <td><a href="Update.php?address_id=<?php echo $row['address_id']; ?>">Update</a></td>            
+                    <td><a href="Delete.php?address_id=<?php echo $row['address_id']; ?>">Delete</a></td>  
+                    <?php endforeach; ?>
+                </tr>
+            
+        </table>
+        <?php endif; ?>
+        <?php if(is_null($results)): ?>
+        <h3>Your address book is empty!</h3><br>
+        
+        <?php endif; ?>
+        
+        
+        <a href="Add.php">Add New Address</a><br><br>
+        <a href="../logout/index.php">Log Out</a>
     </body>
 </html>

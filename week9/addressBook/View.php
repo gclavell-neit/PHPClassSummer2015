@@ -20,10 +20,12 @@ and open the template in the editor.
         include 'functions/addressFunctions.php';
         $user_id = $_SESSION['userId'];
         $address_id = filter_input(INPUT_GET, 'address_id');
+        $groups = getGroups();
       
         
         $results = getAddressById($address_id);
         $fullname = $results['fullname'];
+        $group = groupName($results['address_group_id']);
         $email = $results['email'];
         $address = $results['address'];
         $phone = $results['phone'];
@@ -37,6 +39,7 @@ and open the template in the editor.
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Group</th>
                             <th>Email</th>
                             <th>Address</th>
                             <th>Phone</th>
@@ -51,10 +54,11 @@ and open the template in the editor.
                         <tr>
                             
                             <td><?php echo $results['fullname']; ?></td>
-                            <td><?php echo $results['email']; ?></td>
-                            <td><?php echo $results['address']; ?></td>
-                            <td><?php echo $results['phone']; ?></td>
-                            <td><?php echo $results['website']; ?></td> 
+                            <td><?php echo $group; ?></td>
+                            <td><a href="mailto:<?php echo $results['email']; ?>"><?php echo $results['email']; ?></a></td>
+                            <td><a href="http://maps.google.com/?q=<?php echo $results['address'];?>"><?php echo $results['address']; ?></a></td>
+                            <td><a href="tel:<?php echo $results['phone']; ?>"><?php echo $results['phone']; ?></a></td>
+                            <td><a href="http://<?php echo $results['website']; ?>"><?php echo $results['website']; ?></a></td> 
                             <td><?php echo $results['birthday']; ?></td> 
                             
                             
@@ -63,7 +67,7 @@ and open the template in the editor.
                         </tr>
                     
                 </table>
-                <a href="Read.php">View All Addresses</a>
+                <a href="index.php">View All Addresses</a>
         
     </body>
 </html>
