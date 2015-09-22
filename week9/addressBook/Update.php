@@ -9,6 +9,9 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../includes/styles.css">
     </head>
     <body>
         <?php
@@ -22,17 +25,12 @@ and open the template in the editor.
         
         $results = getAddressById($address_id);
         ?>
-       
-        <h4>Current Data</h4>
-        <span>Name: <?php echo $results['fullname']; ?> </span><br>
-        <span>Group: <?php echo groupName($results['address_group_id']); ?> </span><br>
-        <span>Email: <?php echo $results['email']; ?> </span><br>
-        <span>Address: <?php echo $results['address']; ?> </span><br>
-        <span>Phone: <?php echo $results['phone']; ?> </span><br>
-        <span>Website: <?php echo $results['website']; ?> </span><br>
-        <span>Birthday: <?php echo $results['birthday']; ?> </span><br><br><br>
-       
-       
+        
+        <div class="wrapper">
+        <div class="row">
+        <h3>Update</h3><br>
+
+       <div class="col-md-4" >
        <h4>Update Form</h4>
         <?php
         if (isPostRequest()) {
@@ -43,7 +41,8 @@ and open the template in the editor.
         	$address = filter_input(INPUT_POST, 'address');
         	$phone = filter_input(INPUT_POST, 'phone');
         	$website = filter_input(INPUT_POST, 'website');
-        	$birthday = filter_input(INPUT_POST, 'birthday');
+        	$timestamp = strtotime(filter_input(INPUT_POST, 'birthday'));
+            $birthday = date( 'Y-m-d H:i:s', $timestamp);
         	if(updateAddress($address_id, $address_group_id, $fullname, $email, $address, $phone, $website, $birthday)){
         		echo '<h3>Address updated successfully</h3>';
         	}else{
@@ -55,9 +54,22 @@ and open the template in the editor.
         
         include 'includes/newAddressForm.php';
         ?>
-       
+        </div>
+        <div class="col-md-8">
+        <h4>Current Data</h4>
+        <span>Name: <?php echo $results['fullname']; ?> </span><br>
+        <span>Group: <?php echo groupName($results['address_group_id']); ?> </span><br>
+        <span>Email: <?php echo $results['email']; ?> </span><br>
+        <span>Address: <?php echo $results['address']; ?> </span><br>
+        <span>Phone: <?php echo $results['phone']; ?> </span><br>
+        <span>Website: <?php echo $results['website']; ?> </span><br>
+        <span>Birthday: <?php echo $results['birthday']; ?> </span><br><br>
+       </div>
         
+        </div>
+        <br>
         <p><a href="index.php">Return to Address Book</a></p>
         <a href="../logout/index.php">Log Out</a>
+        </div>
     </body>
 </html>

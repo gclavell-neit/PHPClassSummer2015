@@ -3,6 +3,7 @@
 function newUser( $email, $pass ) {
     
     $db = dbconnect();
+    if($email != "" && $pass != ""){
     $date = date('Y-m-d H:i:s');
     $stmt = $db->prepare("INSERT INTO users SET email = :email, password = :password, created = :date");
     $pass = sha1($pass);
@@ -14,6 +15,8 @@ function newUser( $email, $pass ) {
 
     if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
         return true;
+    }
+    return false;
     }
      
     return false;

@@ -8,9 +8,12 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="includes/styles.css">
     </head>
     <body>
-        
+        <div class="wrapper">
         <?php
           
         include 'functions/dbconnect.php';
@@ -40,11 +43,11 @@ and open the template in the editor.
                 
             }
             else{
-                echo '<h2>Log In</h2>';
+                echo '<h2>Log In</h2><br>';
                     include 'includes/loginform.html.php'; 
-                    echo '<p><a href="signup/index.php">Sign Up!</a></p>';
+                    echo '<br><p><a href="signup/index.php">Sign Up!</a></p>';
             }
         ?>
-        
+        </div>
     </body>
 </html>

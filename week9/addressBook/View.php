@@ -8,12 +8,14 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
-        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../includes/styles.css">
     </head>
     <body>
         <?php
         
-        //note: Look at assignment 3 in week 3. Your read and view action pages are the opposite of how they're represented in there.
+        
         require_once '../includes/session-start.req-inc.php';
         include '../functions/dbconnect.php';
         include_once '../functions/until.php';
@@ -34,8 +36,9 @@ and open the template in the editor.
          
         ?>
                 
-                
-                <table>
+              <div class="wrapper">  
+              <h3>Address Book</h3>
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -68,6 +71,7 @@ and open the template in the editor.
                     
                 </table>
                 <a href="index.php">View All Addresses</a>
+               </div> 
         
     </body>
 </html>

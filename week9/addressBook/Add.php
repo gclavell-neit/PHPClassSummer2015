@@ -8,9 +8,12 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    	<link rel="stylesheet" type="text/css" href="../includes/styles.css">
     </head>
     <body>
-        <h3>Address Book</h3>
+        
         <?php
         
         require_once '../includes/session-start.req-inc.php';
@@ -28,7 +31,8 @@ and open the template in the editor.
                 $address = filter_input(INPUT_POST, 'address');
                 $phone = filter_input(INPUT_POST, 'phone');
                 $website = filter_input(INPUT_POST, 'website');
-                $birthday = date( 'Y-m-d', filter_input(INPUT_POST, 'birthday'));
+                $timestamp = strtotime(filter_input(INPUT_POST, 'birthday'));
+                $birthday = date( 'Y-m-d H:i:s', $timestamp);
                 if($fullname != "" && $email !="" && $address != "" && $phone!= ""){
                  if(newAddress($user_id, $address_group_id, $fullname, $email, $address, $phone, $website, $birthday)){
                  echo '<h3>Added successfully</h3>';
@@ -39,11 +43,15 @@ and open the template in the editor.
                 }else echo '<h3>The Name, email, address, and phone fields cannot be left blank</h3>';
           
         }
-       
-        include 'includes/newAddressForm.php';
-        echo '<p><a href="index.php">Return to Address Book</a></p>';
-        echo '<p><a href="../logout/index.php">Log Out</a></p>';
         ?>
+        <div class="wrapper">
+        <h3>New Address</h3><br>
+        <?php include 'includes/newAddressForm.php';?>
+        <br>
+        <p><a href="index.php">Return to Address Book</a></p>
+        <p><a href="../logout/index.php">Log Out</a></p>
+        </div>
+        
        
     </body>
 </html>

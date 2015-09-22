@@ -178,4 +178,47 @@ function deleteAddress($address_id){
 	
 }
 
+function getAddressesWithFilter($user_id, $filter){
+	
+	$db = dbconnect();
+	$addresses = null;
+	
+	
+	$stmt = $db->prepare("SELECT * FROM address WHERE user_id = :user_id AND address_group_id=:filter");
+	
+	$binds = array(
+			 
+			":user_id" => $user_id,
+			":filter" => $filter
+	
+	);
+	
+	if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+		$addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	
+	}
+	 
+	return $addresses;
+}
 
+
+function sortAddressesWithFilter($user_id, $orderby, $filter){
+	$db = dbconnect();
+	
+	$stmt = $db->prepare("SELECT * FROM address WHERE user_id = :user_id AND address_group_id=:filter ORDER BY $orderby");
+	$results = array();
+	
+	$binds = array(
+				
+			":user_id" => $user_id,
+			":filter" => $filter
+	
+	
+	);
+	
+	if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+	return $results;
+	
+}

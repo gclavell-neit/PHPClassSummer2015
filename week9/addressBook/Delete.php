@@ -9,6 +9,9 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    	<link rel="stylesheet" type="text/css" href="../includes/styles.css">
     </head>
     <body>
         <?php
@@ -20,7 +23,7 @@ and open the template in the editor.
         $address_id = filter_input(INPUT_GET, 'address_id');
         $results = getAddressById($address_id);
         ?>
-        
+        <div class="wrapper">
         <h1> Record for
         <?php echo $results['fullname']; ?>
         <?php if ( !deleteAddress($address_id) ): ?> 
@@ -30,5 +33,6 @@ and open the template in the editor.
         
         <p><a href="index.php">Return to Address Book</a></p>
         <a href="../logout/index.php">Log Out</a>
+        </div>
     </body>
 </html>

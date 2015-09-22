@@ -1,6 +1,6 @@
 <form action="#" method="GET">
     <fieldset>
-        <legend>Search</legend>
+
         <label>Choose a column to search by: </label>  
         <select name="column">
             <option value="fullname">Name</option>
@@ -12,5 +12,5 @@
     
          <input type="hidden" name="action" value="search" />
         <input type="submit" value="Submit" />
-    </fieldset>            
+    </fieldset><br>            
 </form>
