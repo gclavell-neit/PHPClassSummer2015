@@ -28,6 +28,7 @@
             
             if ( isset($_SESSION['isValidUser']) &&  $_SESSION['isValidUser'] === true ) {
                 include '../includes/admin-links.html.php';
+                echo '<a href="logout.php">Log Out</a>';
             }else{
             include '../includes/loginform.html.php';}
                 
