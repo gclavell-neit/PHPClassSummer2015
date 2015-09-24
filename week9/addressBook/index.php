@@ -19,6 +19,7 @@ and open the template in the editor.
     <h3>Address Book</h3><br>
         <?php
         require_once '../includes/session-start.req-inc.php';
+        include '../functions/access-required.html.php';
         include '../functions/dbconnect.php';
         include_once '../functions/until.php';
         include 'functions/addressFunctions.php';

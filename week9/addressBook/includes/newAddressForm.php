@@ -22,7 +22,7 @@ and open the template in the editor.
             <br />
             Website: <input type="text"  name="website" class="form-control"<?php if(isset($results) && !is_null($results['website'])): ?> value = "<?php echo $results['website'];?>"<?php endif;?>/>
             <br /> 
-            Birthday: <input type="text"  name="birthday" class="form-control"<?php if(isset($results) && !is_null($results['birthday'])): ?> value = "<?php echo $results['birthday'];?>"<?php endif;?>/>
+            Birthday: <input type="date"  name="birthday" class="form-control"<?php if(isset($results) && !is_null($results['birthday'])): ?> value = "<?php echo date('Y-m-d', strtotime(str_replace('-','/', $results['birthday'])));?>"<?php endif;?>/>
             <br />  
             <input type="hidden" value="" name="id" /><br> 
             <input type="submit" value="Submit" />

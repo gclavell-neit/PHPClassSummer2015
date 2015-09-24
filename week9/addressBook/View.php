@@ -13,10 +13,10 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="../includes/styles.css">
     </head>
     <body>
+    	
         <?php
-        
-        
         require_once '../includes/session-start.req-inc.php';
+        include '../functions/access-required.html.php';
         include '../functions/dbconnect.php';
         include_once '../functions/until.php';
         include 'functions/addressFunctions.php';
@@ -62,11 +62,11 @@ and open the template in the editor.
                             <td><a href="http://maps.google.com/?q=<?php echo $results['address'];?>"><?php echo $results['address']; ?></a></td>
                             <td><a href="tel:<?php echo $results['phone']; ?>"><?php echo $results['phone']; ?></a></td>
                             <td><a href="http://<?php echo $results['website']; ?>"><?php echo $results['website']; ?></a></td> 
-                            <td><?php echo $results['birthday']; ?></td> 
+                            <td><?php echo date('Y-m-d', strtotime(str_replace('-','/', $results['birthday']))); ?></td> 
                             
                             
-                            <td><a href="Update.php?address_id=<?php echo $row['address_id']; ?>">Update</a></td>            
-                            <td><a href="Delete.php?address_id=<?php echo $row['address_id']; ?>">Delete</a></td>            
+                            <td><a href="Update.php?address_id=<?php echo $results['address_id']; ?>">Update</a></td>            
+                            <td><a href="Delete.php?address_id=<?php echo $results['address_id']; ?>">Delete</a></td>            
                         </tr>
                     
                 </table>

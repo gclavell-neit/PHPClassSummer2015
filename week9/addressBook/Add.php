@@ -17,6 +17,7 @@ and open the template in the editor.
         <?php
         
         require_once '../includes/session-start.req-inc.php';
+        include '../functions/access-required.html.php';
         include '../functions/dbconnect.php';
         include_once '../functions/until.php';
         include 'functions/addressFunctions.php';
@@ -32,7 +33,7 @@ and open the template in the editor.
                 $phone = filter_input(INPUT_POST, 'phone');
                 $website = filter_input(INPUT_POST, 'website');
                 $timestamp = strtotime(filter_input(INPUT_POST, 'birthday'));
-                $birthday = date( 'Y-m-d H:i:s', $timestamp);
+                $birthday = date( 'Y-m-d', $timestamp);
                 if($fullname != "" && $email !="" && $address != "" && $phone!= ""){
                  if(newAddress($user_id, $address_group_id, $fullname, $email, $address, $phone, $website, $birthday)){
                  echo '<h3>Added successfully</h3>';

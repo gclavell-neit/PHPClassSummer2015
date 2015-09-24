@@ -14,8 +14,10 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="../includes/styles.css">
     </head>
     <body>
+    	
         <?php
         require_once '../includes/session-start.req-inc.php';
+        include '../functions/access-required.html.php';
         include '../functions/dbconnect.php';
         include_once '../functions/until.php';
         include 'functions/addressFunctions.php';
@@ -34,7 +36,7 @@ and open the template in the editor.
        <h4>Update Form</h4>
         <?php
         if (isPostRequest()) {
-        
+        	//date('Y-m-d', strtotime(str_replace('-','/', $results['birthday'])));
         	$address_group_id = filter_input(INPUT_POST, 'address_group_id');
         	$fullname = filter_input(INPUT_POST, 'fullname');
         	$email = filter_input(INPUT_POST, 'email');
@@ -63,7 +65,7 @@ and open the template in the editor.
         <span>Address: <?php echo $results['address']; ?> </span><br>
         <span>Phone: <?php echo $results['phone']; ?> </span><br>
         <span>Website: <?php echo $results['website']; ?> </span><br>
-        <span>Birthday: <?php echo $results['birthday']; ?> </span><br><br>
+        <span>Birthday: <?php echo date('Y-m-d', strtotime(str_replace('-','/', $results['birthday']))); ?> </span><br><br>
        </div>
         
         </div>
